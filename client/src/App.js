@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
-
+// Add Apollo Library
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 
-const client = newApolloClient({
+const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
+    
     operation.setContext({
       headers: { authorization: token ? `Bearer ${token}` : "" },
     });
@@ -19,7 +20,7 @@ const client = newApolloClient({
 
 function App() {
   return (
-    <ApollloProvider client={client}>
+    <ApolloProvider client={client}>
     <Router>
       <>
         <Navbar />
@@ -39,7 +40,7 @@ function App() {
         </Routes>
       </>
     </Router>
-    </ApollloProvider>
+    </ApolloProvider>
   );
 }
 
