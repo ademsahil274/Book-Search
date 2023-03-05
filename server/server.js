@@ -1,3 +1,4 @@
+console.log("starterapp");
 const express = require("express");
 const path = require("path");
 const db = require("./config/connection");
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 
 
 const startApolloServer = async (typeDefs, resolvers) => {
+  console.log("apolloServerStarter")
   await server.start();
   server.applyMiddleware({ app });
   
